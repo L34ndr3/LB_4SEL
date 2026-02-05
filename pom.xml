@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.3</version> <relativePath/>
+    </parent>
+
+    <groupId>org.example</groupId>
+    <artifactId>LB_4SEL</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>LB_4SEL</name>
+    <description>TP Selenium avec Allure et Spring Boot</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <aspectj.version>1.9.21</aspectj.version>
+        <allure.version>2.25.0</allure.version> </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.18.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
