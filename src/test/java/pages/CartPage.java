@@ -18,16 +18,16 @@ public class CartPage extends BasePage {
     public boolean isDisplayed() {
         return !driver.findElements(checkoutButton).isEmpty();
     }
-
+    //return waitUntil(checkoutButton).isDisplayed();
 
     public int getItemCount() {
         return driver.findElements(cartItems).size();
     }
 
-    /*public CheckoutPage clickCheckout() {
+    public CheckoutPage clickCheckout() {
         driver.findElement(checkoutButton).click();
         return new CheckoutPage(driver);
-    }*/
+    }
 
     public InventoryPage clickContinueShopping() {
         driver.findElement(continueShoppingButton).click();
